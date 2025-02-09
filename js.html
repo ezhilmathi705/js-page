@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Centered Login Form with Validation</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+            display: flex;
+        flex-direction: column;
+            min-height: 100vh;
+          margin: 0;
+         background-color: #f4f4f4;
+        }
+        header, footer {
+            background-color: #343a40;
+          color: white;
+            text-align: center;
+         padding: 15px 0;
+        }
+        .container {
+          background: white;
+            padding: 20px;
+            border-radius: 10px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+         text-align: center;
+            margin: auto;
+        }
+        .error {
+            color: red;
+           font-size: 14px;
+        }
+        input {
+         width: 90%;
+            padding: 8px;
+ margin: 10px 0;
+            display: block;
+      border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+       background-color: #28a745;
+            color: white;
+            padding: 10px;
+       border: none;
+            border-radius: 5px;
+         cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Welcome to WhatsApp</h1>
+    </header>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="name" placeholder="Enter your name">
+            <span class="error" id="nameError"></span>
+   <input type="email" id="email" placeholder="Enter your email">
+            <span class="error" id="emailError"></span>
+<input type="password" id="password" placeholder="Enter your password">
+            <span class="error" id="passwordError"></span>
+ <button type="submit">Login</button>
+        </form>
+    </div>
+ <footer>
+        <p>&copy; AGREE AND CONTINUE </p>
+    </footer>
+ <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let valid = true;
+ const name = document.getElementById("name").value.trim();
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Name is required";
+                valid = false;
+     } else {
+                document.getElementById("nameError").textContent = "";
+            }
+  const email = document.getElementById("email").value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                document.getElementById("emailError").textContent = "Enter a valid email";
+                valid = false;
+            } else {
+                document.getElementById("emailError").textContent = "";
+            }
+ const password = document.getElementById("password").value;
+            if (password.length < 6) {
+                document.getElementById("passwordError").textContent = "Password must be at least 6 characters";
+                valid = false;
+            } else {
+                document.getElementById("passwordError").textContent = "";
+            }
+  if (valid) {
+                alert("Login successful!");
+                document.getElementById("loginForm").reset();
+            }
+        });
+    </script>
+</body>
+</html>
